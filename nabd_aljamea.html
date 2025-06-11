@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نبض الجامعة - كل فعاليات جامعتك في مكان واحد</title>
+    <style>
+        /* ===== الأنماط الأساسية ===== */
+        :root {
+            --primary-color: #4A90E2;
+            --accent-color: #F5A623;
+            --dark-color: #333333;
+            --light-color: #f8f9fa;
+            --gray-color: #6c757d;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+            --border-radius: 8px;
+            --box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* ===== الخطوط ===== */
+        @font-face {
+            font-family: 'Tajawal';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://fonts.gstatic.com/s/tajawal/v9/Iura6YBj_oCad4k1nzSBC45I.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+
+        @font-face {
+            font-family: 'Cairo';
+            font-style: normal;
+            font-weight: 700;
+            src: url(https://fonts.gstatic.com/s/cairo/v20/SLXVc1nY6HkvangtZmpcWmhzfH5lvm8cQyyS4J0.woff2) format('woff2');
+            unicode-range: U+0600-06FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE80-FEFC;
+        }
+
+        /* ===== الحاويات ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* ===== الرأسية ===== */
+        header {
+            background-color: white;
+            box-shadow: var(--box-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            margin-left: 8px;
+            font-size: 1.8rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-item {
+            margin: 0 10px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 8px 12px;
+            border-radius: var(--border-radius);
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary-color);
+            background-color: rgba(74, 144, 226, 0.1);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        /* ===== القسم الرئيسي ===== */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), #50E3C2);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* ===== الأقسام ===== */
+        .section {
+            padding: 30px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+        }
+
+        /* ===== بطاقات الفعاليات ===== */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .event-content {
+            padding: 15px;
+        }
+
+        .event-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .event-info {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+
+        .event-info i {
+            margin-left: 5px;
+            font-size: 1rem;
+        }
+
+        .event-category {
+            display: inline-block;
+            background-color: rgba(74, 144, 226, 0.1);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+        }
+
+        /* ===== الفلاتر ===== */
+        .filters {
+            background-color: white;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            margin-bottom: 20px;
+        }
+
+        .filter-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .filter-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .filter-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 0.9rem;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+
+        /* ===== تفاصيل الفعالية ===== */
+        .event-detail {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .event-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .event-detail-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .event-detail-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-color);
+        }
+
+        .event-detail-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+        }
+
+        .event-detail-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .info-item i {
+            margin-left: 8px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        .event-detail-description {
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .event-detail-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* ===== نموذج إضافة فعالية ===== */
+        .add-event-form {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 30px;
+            display: none;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-input, .form-textarea, .form-select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        /* ===== الأزرار ===== */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            text-align: center;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #3a80d2;
+        }
+
+        .btn-secondary {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: #e2e6ea;
+        }
+
+        .btn-accent {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background-color: #e59913;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* ===== التذييل ===== */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-link {
+            margin-bottom: 8px;
+        }
+
+        .footer-link a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-link a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* ===== الأيقونات ===== */
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            vertical-align: middle;
+        }
+
+        /* ===== الإعلانات ===== */
+        .ad-container {
+            width: 100%;
+            margin: 20px 0;
+            text-align: center;
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: var(--border-radius);
+        }
+
+        .ad-container p {
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+
+        /* ===== التصميم المتجاوب ===== */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                margin-top: 15px;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-item {
+                margin: 5px 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .event-detail-info {
+                grid-template-columns: 1fr;
+            }
+
+            .event-detail-actions {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .filter-row {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- الرأسية -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">
+                    <span class="logo-icon">📅</span>
+                    نبض الجامعة
+                </a>
+                <button class="hamburger" id="hamburger">☰</button>
+                <ul class="nav-menu" id="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-section="home">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="events">الفعاليات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="add-event">أضف فعالية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-section="about">عن الموقع</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- القسم الرئيسي -->
+    <section class="hero" id="home-section">
+        <div class="container">
+            <h1>كل فعاليات جامعتك في مكان واحد!</h1>
+            <p>منصة مركزية تجمع وتعرض جميع الفعاليات والأنشطة التي تهم الطلاب الجامعيين</p>
+            <button class="btn btn-accent" id="explore-events-btn">استكشف الفعاليات</button>
+        </div>
+    </section>
+
+    <!-- قسم الفعاليات القادمة -->
+    <section class="section" id="upcoming-events-section">
+        <div class="container">
+            <h2 class="section-title">الفعاليات القادمة</h2>
+            <div class="events-container" id="upcoming-events">
+                <!-- سيتم إضافة بطاقات الفعاليات هنا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم جميع الفعاليات -->
+    <section class="section" id="events-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">جميع الفعاليات</h2>
+            
+            <!-- فلاتر البحث -->
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-date">التاريخ</label>
+                        <input type="date" id="filter-date" class="filter-input">
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-category">التصنيف</label>
+                        <select id="filter-category" class="filter-input">
+                            <option value="">جميع التصنيفات</option>
+                            <option value="ورشة عمل">ورشة عمل</option>
+                            <option value="ندوة">ندوة</option>
+                            <option value="محاضرة">محاضرة</option>
+                            <option value="نشاط اجتماعي">نشاط اجتماعي</option>
+                            <option value="نشاط رياضي">نشاط رياضي</option>
+                            <option value="معرض">معرض</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label" for="filter-search">بحث</label>
+                        <input type="text" id="filter-search" class="filter-input" placeholder="ابحث عن فعالية...">
+                    </div>
+                </div>
+                <div class="filter-buttons">
+                    <button class="btn btn-primary" id="apply-filters-btn">تطبيق</button>
+                    <button class="btn btn-secondary" id="reset-filters-btn">إعادة ضبط</button>
+                </div>
+            </div>
+            
+            <!-- قائمة الفعاليات -->
+            <div class="events-container" id="all-events">
+                <!-- سيتم إضافة بطاقات الفعاليات هنا بواسطة JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- تفاصيل الفعالية -->
+    <section class="event-detail" id="event-detail-section">
+        <div class="container">
+            <div class="event-detail-header">
+                <div>
+                    <h2 class="event-detail-title" id="detail-title"></h2>
+                    <span class="event-category" id="detail-category"></span>
+                </div>
+                <button class="event-detail-close" id="close-detail-btn">×</button>
+            </div>
+            <img src="" alt="" class="event-detail-image" id="detail-image">
+            <div class="event-detail-info">
+                <div class="info-item">
+                    <i>📅</i>
+                    <span id="detail-date"></span>
+                </div>
+                <div class="info-item">
+                    <i>🕒</i>
+                    <span id="detail-time"></span>
+                </div>
+                <div class="info-item">
+                    <i>📍</i>
+                    <span id="detail-location"></span>
+                </div>
+                <div class="info-item">
+                    <i>👥</i>
+                    <span id="detail-organizer"></span>
+                </div>
+            </div>
+            <div class="event-detail-description" id="detail-description"></div>
+            <div class="event-detail-actions">
+                <a href="#" class="btn btn-primary" id="detail-register-btn" target="_blank">التسجيل</a>
+                <button class="btn btn-outline" id="detail-share-btn">مشاركة</button>
+                <button class="btn btn-secondary" id="detail-back-btn">العودة للفعاليات</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- نموذج إضافة فعالية -->
+    <section class="add-event-form" id="add-event-section">
+        <div class="container">
+            <h2 class="form-title">إضافة فعالية جديدة</h2>
+            <form id="event-form">
+                <div class="form-group">
+                    <label class="form-label" for="event-title">عنوان الفعالية *</label>
+                    <input type="text" id="event-title" class="form-input" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="event-date">التاريخ *</label>
+                        <input type="date" id="event-date" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="event-time">الوقت *</label>
+                        <input type="time" id="event-time" class="form-input" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="event-location">المكان *</label>
+                    <input type="text" id="event-location" class="form-input" required>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="event-organizer">الجهة المنظمة *</label>
+                        <input type="text" id="event-organizer" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="event-category">التصنيف *</label>
+                        <select id="event-category" class="form-select" required>
+                            <option value="">اختر التصنيف</option>
+                            <option value="ورشة عمل">ورشة عمل</option>
+                            <option value="ندوة">ندوة</option>
+                            <option value="محاضرة">محاضرة</option>
+                            <option value="نشاط اجتماعي">نشاط اجتماعي</option>
+                            <option value="نشاط رياضي">نشاط رياضي</option>
+                            <option value="معرض">معرض</option>
+                            <option value="أخرى">أخرى</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="event-description">وصف الفعالية *</label>
+                    <textarea id="event-description" class="form-textarea" required></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label class="form-label" for="event-image">رابط الصورة (اختياري)</label>
+                        <input type="url" id="event-image" class="form-input" placeholder="https://example.com/image.jpg">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="event-register-link">رابط التسجيل (اختياري)</label>
+                        <input type="url" id="event-register-link" class="form-input" placeholder="https://example.com/register">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-event-btn">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">إضافة الفعالية</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- قسم عن الموقع -->
+    <section class="section" id="about-section" style="display: none;">
+        <div class="container">
+            <h2 class="section-title">عن نبض الجامعة</h2>
+            <div style="background-color: white; padding: 20px; border-radius: var(--border-radius); box-shadow: var(--box-shadow);">
+                <p style="margin-bottom: 15px;">
+                    <strong>نبض الجامعة</strong> هي منصة مركزية تهدف إلى جمع وعرض جميع الفعاليات والأنشطة التي تحدث داخل الحرم الجامعي أو التي تهم الطلاب الجامعيين.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    تم تطوير هذه المنصة لحل مشكلة تشتت معلومات الفعاليات وتوفير مصدر واحد للطلاب لمعرفة ما يحدث في جامعتهم.
+                </p>
+                <p style="margin-bottom: 15px;">
+                    من خلال <strong>نبض الجامعة</strong>، يمكنك:
+                </p>
+                <ul style="list-style-position: inside; margin-bottom: 15px; padding-right: 20px;">
+                    <li style="margin-bottom: 8px;">الاطلاع على جميع الفعاليات القادمة في الجامعة</li>
+                    <li style="margin-bottom: 8px;">تصفية الفعاليات حسب التاريخ أو التصنيف</li>
+                    <li style="margin-bottom: 8px;">الاطلاع على تفاصيل كل فعالية</li>
+                    <li style="margin-bottom: 8px;">إضافة فعاليات جديدة لمشاركتها مع زملائك</li>
+                </ul>
+                <p>
+                    نتمنى أن تساهم هذه المنصة في إثراء تجربتك الجامعية وتسهيل وصولك للفعاليات التي تهمك.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- مساحة إعلانية -->
+    <div class="ad-container">
+        <p>مساحة إعلانية</p>
+        <div style="width: 100%; height: 90px; background-color: #e9ecef; display: flex; justify-content: center; align-items: center; color: #6c757d;">
+            إعلان Google AdSense
+        </div>
+    </div>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">نبض الجامعة</h3>
+                    <p>منصة مركزية لجميع فعاليات وأنشطة الجامعة في مكان واحد.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#" data-section="home">الرئيسية</a></li>
+                        <li class="footer-link"><a href="#" data-section="events">الفعاليات</a></li>
+                        <li class="footer-link"><a href="#" data-section="add-event">أضف فعالية</a></li>
+                        <li class="footer-link"><a href="#" data-section="about">عن الموقع</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 class="footer-title">تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="mailto:info@nabd-aljamea.com">info@nabd-aljamea.com</a></li>
+                        <li class="footer-link"><a href="tel:+9661234567890">+966 123 456 7890</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 نبض الجامعة - جميع الحقوق محفوظة</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // البيانات التجريبية للفعاليات
+        const sampleEvents = [
+            {
+                id: 1,
+                title: "ورشة عمل: مهارات البحث العلمي",
+                date: "2025-06-15",
+                time: "10:00",
+                location: "قاعة المؤتمرات الكبرى - مبنى كلية العلوم",
+                organizer: "نادي البحث العلمي",
+                category: "ورشة عمل",
+                description: "ورشة عمل تفاعلية لتعلم أساسيات البحث العلمي وكيفية كتابة الأوراق البحثية بطريقة احترافية. ستغطي الورشة مواضيع مثل اختيار موضوع البحث، جمع المصادر، تحليل البيانات، وكتابة النتائج والتوصيات. الورشة مناسبة لطلاب البكالوريوس والدراسات العليا.",
+                image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: "https://example.com/register"
+            },
+            {
+                id: 2,
+                title: "بطولة كرة القدم الجامعية",
+                date: "2025-06-20",
+                time: "16:00",
+                location: "الملعب الرئيسي - المجمع الرياضي",
+                organizer: "النادي الرياضي",
+                category: "نشاط رياضي",
+                description: "بطولة كرة القدم السنوية بين كليات الجامعة. تستمر البطولة لمدة أسبوع وتختتم بمباراة نهائية يوم الجمعة. يمكن لجميع الطلاب المشاركة من خلال فرق كلياتهم. سيتم تقديم جوائز قيمة للفرق الفائزة بالمراكز الثلاثة الأولى.",
+                image: "https://images.unsplash.com/photo-1574629810360-7efbbe195018?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: "https://example.com/register"
+            },
+            {
+                id: 3,
+                title: "ندوة: مستقبل الذكاء الاصطناعي",
+                date: "2025-06-25",
+                time: "13:30",
+                location: "قاعة المحاضرات - كلية الحاسب الآلي",
+                organizer: "نادي التقنية",
+                category: "ندوة",
+                description: "ندوة علمية حول آخر التطورات في مجال الذكاء الاصطناعي وتأثيرها على مستقبل سوق العمل. سيتحدث في الندوة نخبة من أساتذة الجامعة والخبراء في مجال الذكاء الاصطناعي. ستناقش الندوة التحديات الأخلاقية والتقنية التي تواجه تطور هذا المجال.",
+                image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: "https://example.com/register"
+            },
+            {
+                id: 4,
+                title: "معرض مشاريع التخرج",
+                date: "2025-07-05",
+                time: "09:00",
+                location: "بهو كلية الهندسة",
+                organizer: "عمادة شؤون الطلاب",
+                category: "معرض",
+                description: "معرض سنوي لعرض مشاريع تخرج طلاب كلية الهندسة. يشمل المعرض مشاريع من مختلف التخصصات الهندسية مثل الهندسة المدنية، الميكانيكية، الكهربائية، والمعمارية. يعد هذا المعرض فرصة للطلاب لعرض إبداعاتهم وللشركات للتعرف على المواهب الشابة.",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: ""
+            },
+            {
+                id: 5,
+                title: "محاضرة: الصحة النفسية للطلاب",
+                date: "2025-07-10",
+                time: "11:00",
+                location: "مدرج 3 - كلية الطب",
+                organizer: "مركز الإرشاد الطلابي",
+                category: "محاضرة",
+                description: "محاضرة توعوية حول أهمية الصحة النفسية للطلاب وكيفية التعامل مع ضغوط الدراسة. ستقدم المحاضرة نصائح عملية للحفاظ على التوازن النفسي خلال فترة الدراسة الجامعية، وكيفية التعامل مع القلق والتوتر خاصة خلال فترات الاختبارات.",
+                image: "https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: "https://example.com/register"
+            },
+            {
+                id: 6,
+                title: "حفل استقبال الطلاب الجدد",
+                date: "2025-09-01",
+                time: "17:00",
+                location: "الساحة المركزية",
+                organizer: "عمادة شؤون الطلاب",
+                category: "نشاط اجتماعي",
+                description: "حفل ترحيبي للطلاب المستجدين للعام الدراسي الجديد. يتضمن الحفل فقرات ترفيهية، تعريف بأقسام ومرافق الجامعة، وفرص التعرف على الأندية الطلابية المختلفة. سيتم تقديم وجبة عشاء للحاضرين وتوزيع هدايا تذكارية للطلاب الجدد.",
+                image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
+                registerLink: "https://example.com/register"
+            }
+        ];
+
+        // استرجاع الفعاليات المخزنة محلياً أو استخدام البيانات التجريبية
+        let events = JSON.parse(localStorage.getItem('events')) || sampleEvents;
+
+        // تحديث التخزين المحلي
+        function updateLocalStorage() {
+            localStorage.setItem('events', JSON.stringify(events));
+        }
+
+        // إنشاء بطاقة فعالية
+        function createEventCard(event) {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            card.dataset.id = event.id;
+            
+            // تحديد صورة افتراضية إذا لم تكن متوفرة
+            const imageUrl = event.image || 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80';
+            
+            card.innerHTML = `
+                <img src="${imageUrl}" alt="${event.title}" class="event-image">
+                <div class="event-content">
+                    <h3 class="event-title">${event.title}</h3>
+                    <div class="event-info">
+                        <i>📅</i>
+                        <span>${formatDate(event.date)}</span>
+                    </div>
+                    <div class="event-info">
+                        <i>📍</i>
+                        <span>${event.location}</span>
+                    </div>
+                    <span class="event-category">${event.category}</span>
+                </div>
+            `;
+            
+            // إضافة حدث النقر لعرض التفاصيل
+            card.addEventListener('click', () => showEventDetails(event));
+            
+            return card;
+        }
+
+        // تنسيق التاريخ
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('ar-SA', options);
+        }
+
+        // عرض تفاصيل الفعالية
+        function showEventDetails(event) {
+            // تحديث عناصر التفاصيل
+            document.getElementById('detail-title').textContent = event.title;
+            document.getElementById('detail-category').textContent = event.category;
+            document.getElementById('detail-date').textContent = formatDate(event.date);
+            document.getElementById('detail-time').textContent = event.time;
+            document.getElementById('detail-location').textContent = event.location;
+            document.getElementById('detail-organizer').textContent = event.organizer;
+            document.getElementById('detail-description').textContent = event.description;
+            
+            // تحديد صورة افتراضية إذا لم تكن متوفرة
+            const imageUrl = event.image || 'https://images.unsplash.com/photo-1523580494863-6f3031224c94?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80';
+            document.getElementById('detail-image').src = imageUrl;
+            document.getElementById('detail-image').alt = event.title;
+            
+            // تحديث زر التسجيل
+            const registerBtn = document.getElementById('detail-register-btn');
+            if (event.registerLink) {
+                registerBtn.href = event.registerLink;
+                registerBtn.style.display = 'inline-block';
+            } else {
+                registerBtn.style.display = 'none';
+            }
+            
+            // إظهار قسم التفاصيل وإخفاء الأقسام الأخرى
+            hideAllSections();
+            document.getElementById('event-detail-section').style.display = 'block';
+            
+            // التمرير لأعلى الصفحة
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // تحميل الفعاليات القادمة
+        function loadUpcomingEvents() {
+            const container = document.getElementById('upcoming-events');
+            container.innerHTML = '';
+            
+            // الحصول على التاريخ الحالي
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+            
+            // فلترة الفعاليات القادمة وترتيبها حسب التاريخ
+            const upcomingEvents = events
+                .filter(event => new Date(event.date) >= today)
+                .sort((a, b) => new Date(a.date) - new Date(b.date))
+                .slice(0, 3); // أخذ أول 3 فعاليات فقط
+            
+            // إضافة بطاقات الفعاليات
+            if (upcomingEvents.length > 0) {
+                upcomingEvents.forEach(event => {
+                    container.appendChild(createEventCard(event));
+                });
+            } else {
+                container.innerHTML = '<p style="text-align: center; padding: 20px;">لا توجد فعاليات قادمة حالياً.</p>';
+            }
+        }
+
+        // تحميل جميع الفعاليات
+        function loadAllEvents() {
+            const container = document.getElementById('all-events');
+            container.innerHTML = '';
+            
+            // ترتيب الفعاليات حسب التاريخ
+            const sortedEvents = [...events].sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            // إضافة بطاقات الفعاليات
+            if (sortedEvents.length > 0) {
+                sortedEvents.forEach(event => {
+                    container.appendChild(createEventCard(event));
+                });
+            } else {
+                container.innerHTML = '<p style="text-align: center; padding: 20px;">لا توجد فعاليات متاحة حالياً.</p>';
+            }
+        }
+
+        // تطبيق الفلاتر على الفعاليات
+        function applyFilters() {
+            const dateFilter = document.getElementById('filter-date').value;
+            const categoryFilter = document.getElementById('filter-category').value;
+            const searchFilter = document.getElementById('filter-search').value.toLowerCase();
+            
+            const container = document.getElementById('all-events');
+            container.innerHTML = '';
+            
+            // فلترة الفعاليات
+            let filteredEvents = [...events];
+            
+            if (dateFilter) {
+                filteredEvents = filteredEvents.filter(event => event.date === dateFilter);
+            }
+            
+            if (categoryFilter) {
+                filteredEvents = filteredEvents.filter(event => event.category === categoryFilter);
+            }
+            
+            if (searchFilter) {
+                filteredEvents = filteredEvents.filter(event => 
+                    event.title.toLowerCase().includes(searchFilter) || 
+                    event.description.toLowerCase().includes(searchFilter) ||
+                    event.location.toLowerCase().includes(searchFilter) ||
+                    event.organizer.toLowerCase().includes(searchFilter)
+                );
+            }
+            
+            // ترتيب الفعاليات حسب التاريخ
+            filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            // إضافة بطاقات الفعاليات
+            if (filteredEvents.length > 0) {
+                filteredEvents.forEach(event => {
+                    container.appendChild(createEventCard(event));
+                });
+            } else {
+                container.innerHTML = '<p style="text-align: center; padding: 20px;">لا توجد فعاليات تطابق معايير البحث.</p>';
+            }
+        }
+
+        // إعادة ضبط الفلاتر
+        function resetFilters() {
+            document.getElementById('filter-date').value = '';
+            document.getElementById('filter-category').value = '';
+            document.getElementById('filter-search').value = '';
+            loadAllEvents();
+        }
+
+        // إضافة فعالية جديدة
+        function addNewEvent(e) {
+            e.preventDefault();
+            
+            // الحصول على قيم النموذج
+            const title = document.getElementById('event-title').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const location = document.getElementById('event-location').value;
+            const organizer = document.getElementById('event-organizer').value;
+            const category = document.getElementById('event-category').value;
+            const description = document.getElementById('event-description').value;
+            const image = document.getElementById('event-image').value;
+            const registerLink = document.getElementById('event-register-link').value;
+            
+            // إنشاء معرف فريد
+            const id = events.length > 0 ? Math.max(...events.map(event => event.id)) + 1 : 1;
+            
+            // إنشاء كائن الفعالية الجديدة
+            const newEvent = {
+                id,
+                title,
+                date,
+                time,
+                location,
+                organizer,
+                category,
+                description,
+                image,
+                registerLink
+            };
+            
+            // إضافة الفعالية للمصفوفة وتحديث التخزين المحلي
+            events.push(newEvent);
+            updateLocalStorage();
+            
+            // إعادة تحميل الفعاليات
+            loadUpcomingEvents();
+            loadAllEvents();
+            
+            // إعادة ضبط النموذج والعودة للصفحة الرئيسية
+            document.getElementById('event-form').reset();
+            showSection('home');
+            
+            // عرض رسالة نجاح
+            alert('تمت إضافة الفعالية بنجاح!');
+        }
+
+        // إخفاء جميع الأقسام
+        function hideAllSections() {
+            document.getElementById('home-section').style.display = 'none';
+            document.getElementById('upcoming-events-section').style.display = 'none';
+            document.getElementById('events-section').style.display = 'none';
+            document.getElementById('event-detail-section').style.display = 'none';
+            document.getElementById('add-event-section').style.display = 'none';
+            document.getElementById('about-section').style.display = 'none';
+            
+            // إزالة الفئة النشطة من جميع روابط التنقل
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active');
+            });
+        }
+
+        // عرض قسم محدد
+        function showSection(sectionName) {
+            hideAllSections();
+            
+            // تحديد القسم النشط في قائمة التنقل
+            document.querySelectorAll(`.nav-link[data-section="${sectionName}"]`).forEach(link => {
+                link.classList.add('active');
+            });
+            
+            // عرض الأقسام المناسبة حسب الاختيار
+            switch (sectionName) {
+                case 'home':
+                    document.getElementById('home-section').style.display = 'block';
+                    document.getElementById('upcoming-events-section').style.display = 'block';
+                    break;
+                case 'events':
+                    document.getElementById('events-section').style.display = 'block';
+                    loadAllEvents();
+                    break;
+                case 'add-event':
+                    document.getElementById('add-event-section').style.display = 'block';
+                    break;
+                case 'about':
+                    document.getElementById('about-section').style.display = 'block';
+                    break;
+            }
+            
+            // إغلاق قائمة التنقل في الأجهزة المحمولة
+            document.getElementById('nav-menu').classList.remove('active');
+            
+            // التمرير لأعلى الصفحة
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // مشاركة الفعالية
+        function shareEvent() {
+            const title = document.getElementById('detail-title').textContent;
+            
+            // التحقق من دعم واجهة مشاركة الويب
+            if (navigator.share) {
+                navigator.share({
+                    title: title,
+                    text: `تحقق من هذه الفعالية: ${title} على نبض الجامعة`,
+                    url: window.location.href
+                })
+                .catch(error => console.log('خطأ في المشاركة:', error));
+            } else {
+                // نسخ رابط الصفحة إلى الحافظة كبديل
+                const dummy = document.createElement('input');
+                document.body.appendChild(dummy);
+                dummy.value = window.location.href;
+                dummy.select();
+                document.execCommand('copy');
+                document.body.removeChild(dummy);
+                alert('تم نسخ الرابط إلى الحافظة!');
+            }
+        }
+
+        // تهيئة التطبيق
+        function initApp() {
+            // تحميل الفعاليات القادمة
+            loadUpcomingEvents();
+            
+            // إضافة مستمعي الأحداث للتنقل
+            document.querySelectorAll('.nav-link, .footer-link a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const section = link.dataset.section;
+                    showSection(section);
+                });
+            });
+            
+            // زر استكشاف الفعاليات
+            document.getElementById('explore-events-btn').addEventListener('click', () => {
+                showSection('events');
+            });
+            
+            // زر القائمة في الأجهزة المحمولة
+            document.getElementById('hamburger').addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.toggle('active');
+            });
+            
+            // أزرار الفلاتر
+            document.getElementById('apply-filters-btn').addEventListener('click', applyFilters);
+            document.getElementById('reset-filters-btn').addEventListener('click', resetFilters);
+            
+            // نموذج إضافة فعالية
+            document.getElementById('event-form').addEventListener('submit', addNewEvent);
+            document.getElementById('cancel-event-btn').addEventListener('click', () => {
+                document.getElementById('event-form').reset();
+                showSection('home');
+            });
+            
+            // أزرار تفاصيل الفعالية
+            document.getElementById('close-detail-btn').addEventListener('click', () => {
+                showSection('events');
+            });
+            document.getElementById('detail-back-btn').addEventListener('click', () => {
+                showSection('events');
+            });
+            document.getElementById('detail-share-btn').addEventListener('click', shareEvent);
+            
+            // عرض الصفحة الرئيسية افتراضياً
+            showSection('home');
+        }
+
+        // تشغيل التطبيق عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', initApp);
+    </script>
+</body>
+</html>
